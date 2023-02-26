@@ -57,6 +57,12 @@ public class CustomerServiceImpl implements ICustomerService {
         return customerRepository.findById(id);
     }
 
+
+    @Override
+    public Optional<Customer> findByUser(User user) {
+        return customerRepository.findByUser(user);
+    }
+
     @Override
     public Customer save(Customer customer) {
 
@@ -67,13 +73,6 @@ public class CustomerServiceImpl implements ICustomerService {
         return customerRepository.save(customer);
     }
 
-
-
-
-    @Override
-    public Optional<Customer> findByEmail(String email) {
-        return customerRepository.findByEmail(email);
-    }
 
     @Override
     public void deleteById(Long id) {

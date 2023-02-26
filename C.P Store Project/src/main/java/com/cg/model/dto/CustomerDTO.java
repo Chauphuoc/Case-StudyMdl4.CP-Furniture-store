@@ -1,9 +1,7 @@
 package com.cg.model.dto;
 
-
 import com.cg.model.Customer;
 import com.cg.model.LocationRegion;
-import com.cg.model.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,7 +11,6 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
 import javax.validation.Valid;
-import java.math.BigDecimal;
 
 
 @NoArgsConstructor
@@ -25,17 +22,15 @@ public class CustomerDTO implements Validator {
 
     private Long id;
     private String fullName;
-    private String email;
     private String phone;
 
     @Valid
     private LocationRegionDTO locationRegion;
 
 
-    public CustomerDTO (Long id, String fullName, String email, String phone, LocationRegion locationRegion) {
+    public CustomerDTO (Long id, String fullName, String phone, LocationRegion locationRegion) {
         this.id = id;
         this.fullName = fullName;
-        this.email = email;
         this.phone = phone;
         this.locationRegion = locationRegion.toLocationRegionDTO();
     }
@@ -44,7 +39,6 @@ public class CustomerDTO implements Validator {
         return new Customer()
                 .setId(id)
                 .setFullName(fullName)
-                .setEmail(email)
                 .setPhone(phone)
                 .setLocationRegion(locationRegion.toLocationRegion())
                 ;
@@ -60,7 +54,6 @@ public class CustomerDTO implements Validator {
         CustomerDTO customerDTO = (CustomerDTO) target;
 
         String fullName = customerDTO.getFullName();
-        String email = customerDTO.getEmail();
 
         if (fullName.length() == 0) {
             errors.rejectValue("fullName", "fullName.null", "Full name is required");
@@ -68,15 +61,6 @@ public class CustomerDTO implements Validator {
         else {
             if (fullName.length() < 4 || fullName.length() > 25) {
                 errors.rejectValue("fullName", "fullName.length", "Full name is accept between 4 and 25 characters");
-            }
-        }
-
-        if (email.length() == 0) {
-            errors.rejectValue("email", "email.null", "Email is required");
-        }
-        else {
-            if (!email.matches("^[\\w]+@([\\w-]+\\.)+[\\w-]{2,6}$")) {
-                errors.rejectValue("email", "email.matches", "Email not valid");
             }
         }
     }

@@ -3,6 +3,8 @@ class AppBase {
 
     static DOMAIN_API = this.DOMAIN_SERVER + "/api";
 
+    static API_AUTH = this.DOMAIN_API + "/auth";
+
     static API_CUSTOMER = this.DOMAIN_API + "/customers";
 
 

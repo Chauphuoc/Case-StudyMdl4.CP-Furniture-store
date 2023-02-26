@@ -48,7 +48,7 @@ footer ul.container li {
     line-height: 40px;
 }
 
-.modal-alert-danger {
+.alert-danger-message {
     padding: 10px 35px;
     margin-bottom: 15px;
     color: #842029;
@@ -56,7 +56,7 @@ footer ul.container li {
     border-color: #f5c2c7;
 }
 
-.modal-alert-danger label {
+.alert-danger-message label {
     display: list-item;
 }
 

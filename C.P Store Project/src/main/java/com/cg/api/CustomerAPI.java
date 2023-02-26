@@ -38,12 +38,20 @@ public class CustomerAPI {
     private CustomerRepository customerRepository;
 
 
-    @PostMapping
-    public ResponseEntity<?> getInforCustomer() {
+    @PostMapping("/info")
+    public ResponseEntity<?> getInfoCustomer() {
         String username = appUtils.getUsernamePrincipal();
         Optional<User> userOptional = userService.findByUsername(username);
+
         User user = userOptional.get();
-        return new ResponseEntity<>(user.toUserDTO(), HttpStatus.OK);
+
+        Optional<Customer> customerOptional = customerService.findByUser(user);
+
+        if (customerOptional.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
 

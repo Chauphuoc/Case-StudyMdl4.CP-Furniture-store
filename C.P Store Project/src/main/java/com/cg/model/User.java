@@ -31,9 +31,6 @@ public class User extends BaseEntity {
     @JoinColumn(name = "role_id", referencedColumnName = "id", nullable = false)
     private Role role;
 
-    @OneToOne
-    @JoinColumn(name = "customer_id", referencedColumnName = "id", nullable = true, unique = true)
-    private Customer customer;
 
     public UserDTO toUserDTO() {
         return new UserDTO()
@@ -41,7 +38,7 @@ public class User extends BaseEntity {
                 .setUsername(username)
                 .setPassword(password)
                 .setRole(role.toRoleDTO())
-                .setCustomerDTO(customer.toCustomerDTO());
+                ;
     }
     @Override
     public String toString() {
@@ -50,7 +47,6 @@ public class User extends BaseEntity {
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", role='" + role + '\'' +
-                ", customer='" + customer + '\'' +
                 '}';
     }
 

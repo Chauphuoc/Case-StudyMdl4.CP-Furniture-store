@@ -8,7 +8,6 @@ import lombok.Setter;
 import lombok.experimental.Accessors;
 
 import javax.persistence.*;
-import java.math.BigDecimal;
 
 
 @NoArgsConstructor
@@ -27,8 +26,8 @@ public class Customer extends BaseEntity {
     @Column(name = "full_name", nullable = false)
     private String fullName;
 
-    @Column(nullable = false, unique = true)
-    private String email;
+//    @Column(nullable = false, unique = true)
+//    private String email;
 
     private String phone;
 
@@ -38,13 +37,16 @@ public class Customer extends BaseEntity {
     private LocationRegion locationRegion;
 
 
+    @OneToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false, unique = true)
+    private User user;
+
 
     public CustomerDTO toCustomerDTO() {
 
         return new CustomerDTO()
                 .setId(id)
                 .setFullName(fullName)
-                .setEmail(email)
                 .setPhone(phone)
                 .setLocationRegion(locationRegion.toLocationRegionDTO())
                 ;

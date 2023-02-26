@@ -52,7 +52,9 @@ public class AuthAPI {
     private AppUtils appUtils;
 
     @PostMapping("/register")
-    public ResponseEntity<?> register(@Valid @RequestBody UserDTO userDTO, BindingResult bindingResult) {
+    public ResponseEntity<?> register(@RequestBody UserDTO userDTO, BindingResult bindingResult) {
+
+        new UserDTO().validate(userDTO, bindingResult);
 
         if (bindingResult.hasErrors())
             return appUtils.mapErrorToResponse(bindingResult);

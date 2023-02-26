@@ -9,6 +9,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("")
 public class HomeController {
 
+    @GetMapping
+    public String showHomePage() {
+        return "redirect: /customers";
+    }
+
     @GetMapping("/login")
     public String showLoginPage() {
         return "login";

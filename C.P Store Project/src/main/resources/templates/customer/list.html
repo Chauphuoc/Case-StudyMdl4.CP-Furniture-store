@@ -491,9 +491,6 @@
             })
     }
 
-
-
-
     page.dialogs.loadData.getAllDistrictsByProvince = () => {
         page.dialogs.elements.districtCre.empty();
         let provinceId = page.dialogs.elements.provinceCre.val();
@@ -545,7 +542,6 @@
             })
     }
 
-
     page.dialogs.loadData.getAllWardsByDistrictUp = () => {
 
         page.dialogs.elements.wardCre.empty();
@@ -569,7 +565,6 @@
                 AppBase.SweetAlert.showErrorAlert('Load Wards fail');
             })
     }
-
 
     page.dialogs.loadData.getAllWardsByDistrict = () => {
 
@@ -1460,9 +1455,6 @@
     $(() => {
         page.loadData.getAllCustomers();
 
-
-//          Nhớ remove sự kiện vì nếu kich một laan nữa sẽ bị chồng sự kiện change
-// ví dụ kich 3 lần thay đổi ở province mà ko kich district sẽ bị dồn 3 lần sự kiện change ở districtcre
         page.dialogs.loadData.getAllProvinces().then(() => {
             let districtId = null;
 

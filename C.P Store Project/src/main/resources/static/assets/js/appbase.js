@@ -7,6 +7,13 @@ class AppBase {
 
     static API_CUSTOMER = this.DOMAIN_API + "/customers";
 
+    static API_PRODUCT = this.DOMAIN_API + "/products";
+
+    static API_CART = this.DOMAIN_API + "/carts";
+
+    static BASE_URL_CLOUD_IMAGE = "https://res.cloudinary.com/dg2xmq9tq/image/upload";
+
+    static BASE_SCALE_IMAGE = "c_limit,w_286,h_180,q_100";
 
 
     static SweetAlert = class {
@@ -74,7 +81,6 @@ class Customer {
     constructor(id, fullName, email, phone, locationRegion, balance, deleted) {
         this.id = id;
         this.fullName = fullName;
-        this.email = email;
         this.phone = phone;
         this.locationRegion = locationRegion;
         this.balance = balance;
@@ -118,8 +124,21 @@ class User {
     }
 }
 
-class Role {
-    constructor(id) {
+
+
+class ProductAvatar {
+    constructor(avatar, fileName, fileFolder) {
+        this.avatar = avatar;
+        this.fileName = fileName;
+        this.fileFolder = fileFolder;
+    }
+}
+class Product {
+    constructor(id, title, price, unit, description, avatar) {
         this.id = id;
+        this.title = title;
+        this.price = price;
+        this.description = description;
+        this.avatar = avatar;
     }
 }

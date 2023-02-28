@@ -35,6 +35,11 @@ public class ProductServiceImpl implements IProductService{
     @Autowired
     private UploadUtils uploadUtils;
 
+    @Override
+    public List<ProductCreateResDTO> findAllProductCreateResDTO() {
+        return productRepository.findAllProductCreateResDTO();
+    }
+
 
     @Override
     public List<Product> findALl() {
@@ -43,7 +48,7 @@ public class ProductServiceImpl implements IProductService{
 
     @Override
     public Optional<Product> findById(Long id) {
-        return Optional.empty();
+        return productRepository.findById(id);
     }
 
 

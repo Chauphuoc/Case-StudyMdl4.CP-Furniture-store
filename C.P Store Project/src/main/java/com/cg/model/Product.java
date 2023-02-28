@@ -36,7 +36,7 @@ public class Product extends BaseEntity {
                 .setTitle(title)
                 .setPrice(price)
                 .setDescription(description)
-                .setProductAvatarDTO(productAvatar.toProductAvatarDTO())
+                .setAvatar(productAvatar.toProductAvatarDTO())
                 ;
     }
 

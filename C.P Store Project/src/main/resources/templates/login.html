@@ -70,7 +70,7 @@
                                 </div>
                                 <div class="group">
                                     <label for="passwordReg2" class="label">Repeat Password</label>
-                                    <input id="passwordReg2" type="passwordReg2" class="input" data-type="password"
+                                    <input id="passwordReg2" name="passwordReg2" type="password" class="input" data-type="password"
                                            placeholder="Repeat your password">
                                 </div>
 
@@ -114,8 +114,27 @@
         }
     }
 
+    class User {
+        constructor(username, password, role) {
+            this.username = username;
+            this.password = password;
+            this.role = role;
+        }
+    }
+
+
+    class Role {
+        constructor(id) {
+            this.id = id;
+        }
+    }
+
     let user = new User();
     let role = new Role();
+
+
+
+
 
     page.elements.inputPassword = $('#passwordLog');
 
@@ -125,7 +144,6 @@
         let password = $('#passwordReg1').val();
         let passwordAgain = $('#passwordReg2').val();
         let roleId = $('#roleUp').val();
-
         if (passwordAgain === password) {
             user.username = username;
             user.password = password;
@@ -175,10 +193,9 @@
     $("#btnLogin").on("click", () => {
         let username = $("#usernameLog").val();
         let password = $("#passwordLog").val();
-
         user.username = username;
         user.password = password;
-
+        console.log('here')
         $.ajax({
             headers: {
                 "accept": "application/json",
@@ -201,6 +218,7 @@
     })
 
 
+
 </script>
-</body>
+
 </html>

@@ -1,5 +1,6 @@
 package com.cg.model.dto;
 
+import com.cg.model.ProductAvatar;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,5 +20,13 @@ public class ProductCreateResDTO {
     private BigDecimal price;
     private String description;
 
-    private ProductAvatarDTO productAvatarDTO;
+    private ProductAvatarDTO avatar;
+
+    public ProductCreateResDTO(Long id, String title, BigDecimal price, String description, ProductAvatar productAvatar) {
+        this.id = id;
+        this.title = title;
+        this.price = price;
+        this.description = description;
+        this.avatar = productAvatar.toProductAvatarDTO();
+    }
 }

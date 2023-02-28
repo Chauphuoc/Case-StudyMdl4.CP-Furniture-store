@@ -39,7 +39,7 @@ public class ProductAvatar extends BaseEntity {
     private String cloudId;
 
     @OneToOne(mappedBy = "productAvatar")
-    private Product products;
+    private Product product;
 
 
     public ProductAvatarDTO toProductAvatarDTO() {

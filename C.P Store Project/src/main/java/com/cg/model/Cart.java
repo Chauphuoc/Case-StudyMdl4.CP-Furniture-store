@@ -1,5 +1,6 @@
 package com.cg.model;
 
+import com.cg.model.dto.CartDTO;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -30,6 +31,13 @@ public class Cart extends BaseEntity {
     @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
     private User user;
 
+    public CartDTO toCartDTO() {
+        return new CartDTO()
+                .setId(id)
+                .setTotalAmount(totalAmount)
+                .setUser(user.toUserDTO())
+                ;
+    }
 
     public Order toOrder() {
         return new Order()

@@ -2,6 +2,7 @@ package com.cg.service.cartDetail;
 
 import com.cg.model.Cart;
 import com.cg.model.CartDetail;
+import com.cg.model.dto.CartDetailDTO;
 import com.cg.repository.CartDetailRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,7 +26,7 @@ public class CartDetailServiceImpl implements ICartDetailService{
 
     @Override
     public Optional<CartDetail> findById(Long id) {
-        return Optional.empty();
+        return cartDetailRepository.findById(id);
     }
 
 
@@ -36,7 +37,7 @@ public class CartDetailServiceImpl implements ICartDetailService{
 
     @Override
     public void deleteById(Long id) {
-
+        cartDetailRepository.deleteById(id);
     }
 
     @Override
@@ -48,4 +49,21 @@ public class CartDetailServiceImpl implements ICartDetailService{
     public List<CartDetail> findAllByCart(Cart cart) {
         return cartDetailRepository.findAllByCart(cart);
     }
+
+    @Override
+    public List<CartDetailDTO> findAllCartDetailDTO(Cart cart) {
+        return cartDetailRepository.findAllCartDetailDTO(cart);
+    }
+
+//    @Override
+//    public void deleteCartDetailById(Long id) {
+//        cartDetailRepository.deleteCartDetailById(id);
+//    }
+
+    @Override
+    public Optional<CartDetailDTO> findCartDetailById(Long id) {
+        return cartDetailRepository.findCartDetailById(id);
+    }
+
+
 }

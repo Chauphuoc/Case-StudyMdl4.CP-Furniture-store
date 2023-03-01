@@ -5,6 +5,7 @@ import com.cg.model.Cart;
 import com.cg.model.CartDetail;
 import com.cg.model.Product;
 import com.cg.model.User;
+import com.cg.model.dto.CartDetailDTO;
 import com.cg.model.dto.ProductCreateResDTO;
 import com.cg.service.cart.ICartService;
 import com.cg.service.cartDetail.ICartDetailService;
@@ -36,28 +37,37 @@ public class CartAPI {
     @Autowired
     private ICartDetailService cartDetailService;
 
+
     @Autowired
     private AppUtils appUtils;
 
-//    @GetMapping
-//    public ResponseEntity<?> getALlProductById () {
-//        String username = appUtils.getUsernamePrincipal();
-//        Optional<User> userOptional = userService.findByUsername(username);
-//        User user = userOptional.get();
-//        Optional<Cart> cartOptional = cartService.findByUser(user);
-//
-//        if (!cartOptional.isPresent()) {
-//            throw new DataInputException("Cart not valid");
-//        }
-//        Cart cart = cartOptional.get();
-//
-//        List<CartDetail> cartDetails = cartDetailService.findAllByCart(cart);
-//
-//
-//
-//
-//        return new ResponseEntity<>(productCreateResDTOS, HttpStatus.OK);
-//    }
+    @GetMapping
+    public ResponseEntity<?> getCartDetail () {
+        String username = appUtils.getUsernamePrincipal();
+        Optional<User> userOptional = userService.findByUsername(username);
+        User user = userOptional.get();
+        Optional<Cart> cartOptional = cartService.findByUser(user);
+
+        if (!cartOptional.isPresent()) {
+            throw new DataInputException("Cart not valid");
+        }
+        Cart cart = cartOptional.get();
+
+        List<CartDetailDTO> cartDetailDTOS = cartDetailService.findAllCartDetailDTO(cart);
+        return new ResponseEntity<>(cartDetailDTOS, HttpStatus.OK);
+    }
+
+    @DeleteMapping ("/{id}")
+    public ResponseEntity<?> doDelete(@PathVariable Long id) {
+        Optional<CartDetail> cartDetailOptional = cartDetailService.findById(id);
+        if (!cartDetailOptional.isPresent()) {
+            throw new DataInputException("CartDetail is not found");
+        }
+//        CartDetailDTO cartDetailDTO = cartDetailDTOOptional.get();
+//        CartDetail cartDetail = cartDetailDTO.toCartDetail();
+        cartDetailService.deleteById(id);
+        return new ResponseEntity<>( HttpStatus.OK);
+    }
 
 
     @PostMapping("/{productId}")
@@ -105,7 +115,6 @@ public class CartAPI {
         }
         else {
             Cart cart = cartOptional.get();
-
             cartService.checkout(user, cart);
         }
 

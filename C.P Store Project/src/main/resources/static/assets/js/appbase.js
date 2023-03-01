@@ -142,3 +142,22 @@ class Product {
         this.avatar = avatar;
     }
 }
+
+class Role {
+    constructor(id) {
+        this.id = id;
+    }
+}
+
+class CartDetail {
+    constructor(id , title, price , quantity, amount , product) {
+        this.id = id;
+        this.title = title;
+        this.price = price;
+        this.quantity = quantity;
+        this.amount = amount;
+        this.product = product;
+    }
+}
+
+

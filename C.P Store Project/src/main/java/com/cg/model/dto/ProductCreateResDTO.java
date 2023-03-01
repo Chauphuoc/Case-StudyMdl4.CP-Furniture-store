@@ -1,5 +1,6 @@
 package com.cg.model.dto;
 
+import com.cg.model.Product;
 import com.cg.model.ProductAvatar;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -28,5 +29,16 @@ public class ProductCreateResDTO {
         this.price = price;
         this.description = description;
         this.avatar = productAvatar.toProductAvatarDTO();
+    }
+
+    //    delete
+    public Product toProduct() {
+        return new Product()
+                .setId(id)
+                .setTitle(title)
+                .setPrice(price)
+                .setDescription(description)
+                .setProductAvatar(avatar.toProductAvatar())
+                ;
     }
 }

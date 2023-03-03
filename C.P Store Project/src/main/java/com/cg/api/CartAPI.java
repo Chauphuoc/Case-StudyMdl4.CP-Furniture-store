@@ -1,14 +1,12 @@
 package com.cg.api;
 
 import com.cg.exception.DataInputException;
-import com.cg.model.Cart;
-import com.cg.model.CartDetail;
-import com.cg.model.Product;
-import com.cg.model.User;
+import com.cg.model.*;
 import com.cg.model.dto.CartDetailDTO;
 import com.cg.model.dto.ProductCreateResDTO;
 import com.cg.service.cart.ICartService;
 import com.cg.service.cartDetail.ICartDetailService;
+import com.cg.service.order.IOrderService;
 import com.cg.service.product.IProductService;
 import com.cg.service.user.IUserService;
 import com.cg.utils.AppUtils;
@@ -37,6 +35,8 @@ public class CartAPI {
     @Autowired
     private ICartDetailService cartDetailService;
 
+    @Autowired
+    private IOrderService orderService;
 
     @Autowired
     private AppUtils appUtils;
@@ -66,6 +66,7 @@ public class CartAPI {
 //        CartDetailDTO cartDetailDTO = cartDetailDTOOptional.get();
 //        CartDetail cartDetail = cartDetailDTO.toCartDetail();
         cartDetailService.deleteById(id);
+
         return new ResponseEntity<>( HttpStatus.OK);
     }
 
@@ -110,14 +111,17 @@ public class CartAPI {
 
         Optional<Cart> cartOptional = cartService.findByUser(user);
 
+        Order order = new Order();
+
         if (!cartOptional.isPresent()) {
             throw new DataInputException("Please buy something before checkout");
         }
         else {
             Cart cart = cartOptional.get();
             cartService.checkout(user, cart);
+            order = orderService.findOrderByUser(user);
         }
 
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>(order.toOrderDTO() ,HttpStatus.OK);
     }
 }

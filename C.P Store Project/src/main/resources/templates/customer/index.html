@@ -73,7 +73,7 @@
                                                 class="fa fa-angle-down"></i></a>
                                     </li>
                                     <li class="has-dropdown">
-                                        <a href="blog-single-sidebar-left.html">Blog <i
+                                        <a href="#" id="create-new-product">Create Product<i
                                                 class="fa fa-angle-down"></i></a>
                                     </li>
                                     <li class="has-dropdown">
@@ -1045,7 +1045,7 @@
     <div class="modal-dialog  modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-body">
-                <div class="container-fluid">
+                <div class="container-fluid" id="renderProductDetail">
                     <div class="row">
                         <div class="col text-right">
                             <button type="button" class="close modal-close" data-bs-dismiss="modal"
@@ -1054,173 +1054,70 @@
                             </button>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="product-details-gallery-area mb-7">
-                                <!-- Start Large Image -->
-                                <div class="product-large-image modal-product-image-large swiper-container">
-                                    <div class="swiper-wrapper">
-                                        <div class="product-image-large-image swiper-slide img-responsive">
-                                            <img src="/assets/project/images/product/default/home-1/default-1.jpg"
-                                                 alt="">
-                                        </div>
-                                        <div class="product-image-large-image swiper-slide img-responsive">
-                                            <img src="/assets/project/images/product/default/home-1/default-2.jpg"
-                                                 alt="">
-                                        </div>
-                                        <div class="product-image-large-image swiper-slide img-responsive">
-                                            <img src="/assets/project/images/product/default/home-1/default-3.jpg"
-                                                 alt="">
-                                        </div>
-                                        <div class="product-image-large-image swiper-slide img-responsive">
-                                            <img src="/assets/project/images/product/default/home-1/default-4.jpg"
-                                                 alt="">
-                                        </div>
-                                        <div class="product-image-large-image swiper-slide img-responsive">
-                                            <img src="/assets/project/images/product/default/home-1/default-5.jpg"
-                                                 alt="">
-                                        </div>
-                                        <div class="product-image-large-image swiper-slide img-responsive">
-                                            <img src="/assets/project/images/product/default/home-1/default-6.jpg"
-                                                 alt="">
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- End Large Image -->
-                                <!-- Start Thumbnail Image -->
-                                <div
-                                        class="product-image-thumb modal-product-image-thumb swiper-container pos-relative mt-5">
-                                    <div class="swiper-wrapper">
-                                        <div class="product-image-thumb-single swiper-slide">
-                                            <img class="img-fluid"
-                                                 src="/assets/project/images/product/default/home-1/default-1.jpg"
-                                                 alt="">
-                                        </div>
-                                        <div class="product-image-thumb-single swiper-slide">
-                                            <img class="img-fluid"
-                                                 src="/assets/project/images/product/default/home-1/default-2.jpg"
-                                                 alt="">
-                                        </div>
-                                        <div class="product-image-thumb-single swiper-slide">
-                                            <img class="img-fluid"
-                                                 src="/assets/project/images/product/default/home-1/default-3.jpg"
-                                                 alt="">
-                                        </div>
-                                        <div class="product-image-thumb-single swiper-slide">
-                                            <img class="img-fluid"
-                                                 src="/assets/project/images/product/default/home-1/default-4.jpg"
-                                                 alt="">
-                                        </div>
-                                        <div class="product-image-thumb-single swiper-slide">
-                                            <img class="img-fluid"
-                                                 src="/assets/project/images/product/default/home-1/default-5.jpg"
-                                                 alt="">
-                                        </div>
-                                        <div class="product-image-thumb-single swiper-slide">
-                                            <img class="img-fluid"
-                                                 src="/assets/project/images/product/default/home-1/default-6.jpg"
-                                                 alt="">
-                                        </div>
-                                    </div>
-                                    <!-- Add Arrows -->
-                                    <div class="gallery-thumb-arrow swiper-button-next"></div>
-                                    <div class="gallery-thumb-arrow swiper-button-prev"></div>
-                                </div>
-                                <!-- End Thumbnail Image -->
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="modal-product-details-content-area">
-                                <!-- Start  Product Details Text Area-->
-                                <div class="product-details-text">
-                                    <h4 class="title">Nonstick Dishwasher PFOA</h4>
-                                    <div class="price">
-                                        <del>$70.00</del>
-                                        $80.00
-                                    </div>
-                                </div> <!-- End  Product Details Text Area-->
-                                <!-- Start Product Variable Area -->
-                                <div class="product-details-variable">
-                                    <!-- Product Variable Single Item -->
-                                    <div class="variable-single-item">
-                                        <span>Color</span>
-                                        <div class="product-variable-color">
-                                            <label for="modal-product-color-red">
-                                                <input name="modal-product-color" id="modal-product-color-red"
-                                                       class="color-select" type="radio" checked>
-                                                <span class="product-color-red"></span>
-                                            </label>
-                                            <label for="modal-product-color-tomato">
-                                                <input name="modal-product-color" id="modal-product-color-tomato"
-                                                       class="color-select" type="radio">
-                                                <span class="product-color-tomato"></span>
-                                            </label>
-                                            <label for="modal-product-color-green">
-                                                <input name="modal-product-color" id="modal-product-color-green"
-                                                       class="color-select" type="radio">
-                                                <span class="product-color-green"></span>
-                                            </label>
-                                            <label for="modal-product-color-light-green">
-                                                <input name="modal-product-color"
-                                                       id="modal-product-color-light-green" class="color-select"
-                                                       type="radio">
-                                                <span class="product-color-light-green"></span>
-                                            </label>
-                                            <label for="modal-product-color-blue">
-                                                <input name="modal-product-color" id="modal-product-color-blue"
-                                                       class="color-select" type="radio">
-                                                <span class="product-color-blue"></span>
-                                            </label>
-                                            <label for="modal-product-color-light-blue">
-                                                <input name="modal-product-color"
-                                                       id="modal-product-color-light-blue" class="color-select"
-                                                       type="radio">
-                                                <span class="product-color-light-blue"></span>
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <!-- Product Variable Single Item -->
-                                    <div class="d-flex align-items-center flex-wrap">
-                                        <div class="variable-single-item ">
-                                            <span>Quantity</span>
-                                            <div class="product-variable-quantity">
-                                                <input min="1" max="100" value="1" type="number">
-                                            </div>
-                                        </div>
+<!--                    render detail product-->
+                    <div class="row render-detail-product" >
 
-                                        <div class="product-add-to-cart-btn">
-                                            <a href="#" data-bs-toggle="modal" data-bs-target="#modalAddcart">Add To
-                                                Cart</a>
-                                        </div>
-                                    </div>
-                                </div> <!-- End Product Variable Area -->
-                                <div class="modal-product-about-text">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia iste
-                                        laborum ad impedit pariatur esse optio tempora sint ullam autem deleniti nam
-                                        in quos qui nemo ipsum numquam, reiciendis maiores quidem aperiam, rerum vel
-                                        recusandae</p>
-                                </div>
-                                <!-- Start  Product Details Social Area-->
-                                <div class="modal-product-details-social">
-                                    <span class="title">SHARE THIS PRODUCT</span>
-                                    <ul>
-                                        <li><a href="#" class="facebook"><i class="fa fa-facebook"></i></a></li>
-                                        <li><a href="#" class="twitter"><i class="fa fa-twitter"></i></a></li>
-                                        <li><a href="#" class="pinterest"><i class="fa fa-pinterest"></i></a></li>
-                                        <li><a href="#" class="google-plus"><i class="fa fa-google-plus"></i></a>
-                                        </li>
-                                        <li><a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a></li>
-                                    </ul>
-
-                                </div> <!-- End  Product Details Social Area-->
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div> <!-- End Modal Quickview cart -->
+
+
+<!--Create Product Modal-->
+<div class="modal fade" id="newProductModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="createProductModalLabel">
+                    Product information
+                </h5>
+                <button type="button" class="close btn-sm btn btn-outline-dark" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <ul class="alert alert-danger d-none px-5"></ul>
+            <form id="newProductForm" class="m-3">
+                <div class="mb-3 row">
+                    <div class="col-lg-8">
+                        <div class="row mb-3">
+                            <div class="col-lg-12">
+                                <label for="inputProductname" class="form-label">Product name</label>
+                                <input type="text" class="form-control" id="inputProductname" name="title"/>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-lg-12">
+                                <label for="inputPrice" class="form-label">Price</label>
+                                <input type="text" class="form-control" id="inputPrice" name="price"/>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="form-group">
+                                <label for="inputDescription">Description</label>
+                                <textarea class="form-control" id="inputDescription" rows="2"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 d-flex text-center pointer">
+                        <input type="file" class="form-control d-none" accept="image/*" id="inputImage">
+                        <label for="inputImage" class="text-center d-flex align-items-center justify-content-center preview">
+                            <img width="250" height="250" class="d-none imgPreview" id="imgPreviewCre"/>
+                            <p class="previewText">Choose an image</p>
+                        </label>
+                    </div>
+                </div>
+                <button type="button" id="createProductConfirmBtn" class="btn btn-outline-primary px-5 float-end">
+                    Create
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
 <!-- Use the minified version files listed below for better performance and remove the files listed above -->
 <script src="/assets/project/js/vendor/vendor.min.js"></script>
 <script src="/assets/project/js/plugins/plugins.min.js"></script>
@@ -1241,7 +1138,9 @@
             getAllProducts: AppBase.API_PRODUCT,
             findProductById: AppBase.API_PRODUCT,
             createCustomer: AppBase.API_PRODUCT,
-            addToCart: AppBase.API_CART
+            addToCart: AppBase.API_CART,
+            createProduct: AppBase.API_PRODUCT,
+
         },
         elements: {},
         loadData: {},
@@ -1277,6 +1176,14 @@
     page.dialogs.elements.wardUp = $('#wardUp');
     page.dialogs.elements.addressUp = $('#addressUp');
     page.dialogs.elements.btnUpdate = $('#btnUpdateCustomer')
+
+    page.dialogs.elements.modalCreateProduct = $('#newProductModal');
+    page.elements.inputProductname = $('#inputProductname');
+    page.elements.inputPrice = $('#inputPrice');
+    page.elements.inputDescription = $('#inputDescription');
+    page.elements.inputImage = $('#inputImage');
+    page.elements.imgPreviewCre = $('#imgPreviewCre');
+    page.elements.previewText = $(".previewText");
 
     $('#btnShowCreateModal').on('click',()=>{
         page.dialogs.elements.modalCreate.modal('show');
@@ -1428,6 +1335,8 @@
     let productAvatar = new ProductAvatar();
     let currentProduct = new Product();
     let carts = [];
+    let product = new Product();
+
 
     page.loadData.getInfoCustomer = () => {
         $.ajax({
@@ -1512,7 +1421,6 @@
         })
             .done((data) => {
                 $.each(data.results,(i,item)=>{
-                    console.log('hello')
                     let str = `<option value="${item.province_id}">${item.province_name}</option>`;
                     page.dialogs.elements.provinceCre.append(str);
                 })
@@ -1801,6 +1709,185 @@
         })
     }
 
+    page.commands.addEventShowModalDetail = ()=>{
+        $('.classShowModalDetail').on('click',function (){
+            let idProduct = $(this).data('id');
+            console.log(idProduct);
+            page.commands.findProductById(idProduct).then((data)=>{
+                currentProduct = data;
+                avatar = currentProduct.avatar;
+                let str = page.commands.renderDetailProduct(currentProduct, avatar);
+                $('.render-detail-product').empty();
+                $('.render-detail-product').append(str);
+                $('#modalQuickview').modal('show');
+            })
+
+        })
+
+    }
+
+    page.commands.removeEventShowModalDetail = () => {
+        $('.classShowModalDetail').off('click');
+    }
+
+    page.commands.findProductById = (id)=>{
+        return $.ajax({
+            type: "GET",
+            url: page.urls.findProductById + "/" + id
+        })
+    }
+
+    page.commands.renderDetailProduct = (product, avatar)=>{
+        let imageUrl = AppBase.BASE_URL_CLOUD_IMAGE + '/' + '/' + avatar.fileFolder + '/' + avatar.fileName;
+        return `
+                        <div class="col-md-6">
+                            <div class="product-details-gallery-area mb-7">
+                                <!-- Start Large Image -->
+                                <div class="product-large-image modal-product-image-large swiper-container">
+                                    <div class="swiper-wrapper">
+                                        <div class="product-image-large-image swiper-slide img-responsive">
+                                            <img src="/assets/project/images/product/default/home-1/default-1.jpg"
+                                                 alt="">
+                                        </div>
+                                        <div class="product-image-large-image swiper-slide img-responsive">
+                                            <img src="/assets/project/images/product/default/home-1/default-2.jpg"
+                                                 alt="">
+                                        </div>
+                                        <div class="product-image-large-image swiper-slide img-responsive">
+                                            <img src="/assets/project/images/product/default/home-1/default-3.jpg"
+                                                 alt="">
+                                        </div>
+                                        <div class="product-image-large-image swiper-slide img-responsive">
+                                            <img src="/assets/project/images/product/default/home-1/default-4.jpg"
+                                                 alt="">
+                                        </div>
+                                        <div class="product-image-large-image swiper-slide img-responsive">
+                                            <img src="/assets/project/images/product/default/home-1/default-5.jpg"
+                                                 alt="">
+                                        </div>
+                                        <div class="product-image-large-image swiper-slide img-responsive">
+                                            <img src="/assets/project/images/product/default/home-1/default-6.jpg"
+                                                 alt="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- End Large Image -->
+                                <!-- Start Thumbnail Image -->
+                                <div
+                                        class="product-image-thumb modal-product-image-thumb swiper-container pos-relative mt-5">
+                                    <div class="swiper-wrapper">
+                                        <div class="product-image-thumb-single swiper-slide">
+                                            <img class="img-fluid"
+                                                 src="${imageUrl}"
+                                                 alt="">
+                                        </div>
+                                        <div class="product-image-thumb-single swiper-slide">
+                                            <img class="img-fluid"
+                                                 src="/assets/project/images/product/default/home-1/default-2.jpg"
+                                                 alt="">
+                                        </div>
+                                        <div class="product-image-thumb-single swiper-slide">
+                                            <img class="img-fluid"
+                                                 src="/assets/project/images/product/default/home-1/default-3.jpg"
+                                                 alt="">
+                                        </div>
+                                        <div class="product-image-thumb-single swiper-slide">
+                                            <img class="img-fluid"
+                                                 src="/assets/project/images/product/default/home-1/default-4.jpg"
+                                                 alt="">
+                                        </div>
+                                        <div class="product-image-thumb-single swiper-slide">
+                                            <img class="img-fluid"
+                                                 src="/assets/project/images/product/default/home-1/default-5.jpg"
+                                                 alt="">
+                                        </div>
+                                        <div class="product-image-thumb-single swiper-slide">
+                                            <img class="img-fluid"
+                                                 src="/assets/project/images/product/default/home-1/default-6.jpg"
+                                                 alt="">
+                                        </div>
+                                    </div>
+                                    <!-- Add Arrows -->
+                                    <div class="gallery-thumb-arrow swiper-button-next"></div>
+                                    <div class="gallery-thumb-arrow swiper-button-prev"></div>
+                                </div>
+                                <!-- End Thumbnail Image -->
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="modal-product-details-content-area">
+                                <!-- Start  Product Details Text Area-->
+                                <div class="product-details-text">
+                                    <h4 class="title">${product.title}</h4>
+                                    <div class="price">
+                                        <div>$ ${product.price}</div>
+                                    </div>
+                                </div> <!-- End  Product Details Text Area-->
+                                <!-- Start Product Variable Area -->
+                                <div class="product-details-variable">
+                                    <!-- Product Variable Single Item -->
+                                    <div class="variable-single-item">
+                                        <span>Color</span>
+                                        <div class="product-variable-color">
+                                            <label for="modal-product-color-red">
+                                                <input name="modal-product-color" id="modal-product-color-red"
+                                                       class="color-select" type="radio" checked>
+                                                <span class="product-color-red"></span>
+                                            </label>
+                                            <label for="modal-product-color-tomato">
+                                                <input name="modal-product-color" id="modal-product-color-tomato"
+                                                       class="color-select" type="radio">
+                                                <span class="product-color-tomato"></span>
+                                            </label>
+                                            <label for="modal-product-color-green">
+                                                <input name="modal-product-color" id="modal-product-color-green"
+                                                       class="color-select" type="radio">
+                                                <span class="product-color-green"></span>
+                                            </label>
+                                            <label for="modal-product-color-light-green">
+                                                <input name="modal-product-color"
+                                                       id="modal-product-color-light-green" class="color-select"
+                                                       type="radio">
+                                                <span class="product-color-light-green"></span>
+                                            </label>
+                                            <label for="modal-product-color-blue">
+                                                <input name="modal-product-color" id="modal-product-color-blue"
+                                                       class="color-select" type="radio">
+                                                <span class="product-color-blue"></span>
+                                            </label>
+                                            <label for="modal-product-color-light-blue">
+                                                <input name="modal-product-color"
+                                                       id="modal-product-color-light-blue" class="color-select"
+                                                       type="radio">
+                                                <span class="product-color-light-blue"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <!-- Product Variable Single Item -->
+                                    <div class="d-flex align-items-center flex-wrap">
+                                        <div class="variable-single-item ">
+                                            <span>Quantity</span>
+                                            <div class="product-variable-quantity">
+                                                <input min="1" max="100" value="1" type="number">
+                                            </div>
+                                        </div>
+
+                                        <div class="product-add-to-cart-btn">
+                                            <a href="#" data-bs-toggle="modal" data-bs-target="#modalAddcart">Add To
+                                                Cart</a>
+                                        </div>
+                                    </div>
+                                </div> <!-- End Product Variable Area -->
+                                <div class="modal-product-about-text">
+                                    <p>${product.description}</p>
+                                </div>
+                                <!-- Start  Product Details Social Area-->
+
+                            </div>
+                        </div>
+
+         `
+    }
 
     page.commands.renderProduct = (product , avatar) => {
         let imageUrl = AppBase.BASE_URL_CLOUD_IMAGE + '/'  + '/' + avatar.fileFolder + '/' + avatar.fileName
@@ -1808,7 +1895,6 @@
                 <div class="product-default-single-item product-color--golden swiper-slide">
                                     <div class="image-box">
                                         <a href="product-details-default.html" class="image-link">
-<!--                                            image-->
                                             <img src="${imageUrl}"
                                                  alt="">
                                         </a>
@@ -1818,9 +1904,8 @@
                                                 <a  class="add-product-cart" data-id="${product.id}" >Add to Cart</a>
                                             </div>
                                             <div class="action-link-right">
-                                                <a href="#" data-bs-toggle="modal"
-                                                   data-bs-target="#modalQuickview"><i
-                                                        class="icon-magnifier"></i></a>
+                                                <a href="#" class="classShowModalDetail" data-id="${product.id}" >
+                                                   <i class="icon-magnifier"></i></a>
                                                 <a href="wishlist.html"><i class="icon-heart"></i></a>
                                                 <a href="compare.html"><i class="icon-shuffle"></i></a>
                                             </div>
@@ -1846,33 +1931,85 @@
          `;
     }
 
-        page.loadData.getAllProducts = () => {
+    page.commands.EventShowCreateProductModal = ()=>{
+        $('#create-new-product').on('click', ()=>{
+            page.dialogs.elements.modalCreateProduct.modal('show');
+        })
+    }
+
+    page.commands.onLoadCreateImage = ()=>{
+        page.elements.inputImage.on('change', function (e){
+            page.elements.imgPreviewCre.attr("src", URL.createObjectURL(e.target.files[0]));
+            page.elements.imgPreviewCre.removeClass("d-none").addClass("d-block");
+            page.elements.previewText.addClass("d-none")
+        })
+    }
+
+    page.commands.createNewProduct = () => {
+        $('#createProductConfirmBtn').on('click',()=>{
+            let title = page.elements.inputProductname.val();
+            let price = page.elements.inputPrice.val();
+            let description = page.elements.inputDescription.val();
+            let file = page.elements.inputImage[0].files[0] || null;
+
+            let formData = new FormData();
+
+
+            formData.append("title", title);
+            formData.append("price", price);
+            formData.append("description", description);
+            formData.append("file", file);
+
             $.ajax({
-                url: page.urls.getAllProducts
+                contentType: false,
+                cache: false,
+                processData: false,
+                type: "POST",
+                url: page.urls.createProduct,
+                data: formData,
             })
-                .done((data) => {
-                    console.log(data);
+                .done((data)=>{
+                    product = data;
+                    productAvatar = product.avatar;
+                    page.commands.renderProduct(product, productAvatar);
+                    page.dialogs.elements.modalCreateProduct.modal('hide');
+                    AppBase.SweetAlert.showSuccessAlert(
+                        "New product is created successfully!",
+                    );
+                })
+        })
+    };
+
+
+    page.loadData.getAllProducts = () => {
+        $.ajax({
+            url: page.urls.getAllProducts
+            })
+            .done((data) => {
+                console.log(data);
                     $.each(data, (i, item) => {
                         currentProduct = item;
                         productAvatar = currentProduct.avatar;
                         let str = page.commands.renderProduct(currentProduct, productAvatar);
                         $('.contentProduct').append(str);
+
                     })
 
-                    page.commands.handleAddCart();
-                })
-                .fail((jqXHR) => {
-                    console.log(jqXHR)
-                })
+                page.commands.handleAddCart();
+                page.commands.removeEventShowModalDetail();
+                page.commands.addEventShowModalDetail();
+            })
+            .fail((jqXHR) => {
+                console.log(jqXHR)})
         }
 
-
         $(() => {
-            // page.initializeEventControl();
             page.loadData.getAllProducts();
+            page.commands.EventShowCreateProductModal();
+            page.commands.createNewProduct();
             page.commands.addEventUpdateCustomer();
             page.loadData.getInfoCustomer();
-
+            page.commands.onLoadCreateImage();
             page.dialogs.loadData.getAllProvinces().then(() => {
                 let districtId = null;
 
@@ -1895,6 +2032,8 @@
                 })
             })
         })
+
+
 
         </script>
 </body>

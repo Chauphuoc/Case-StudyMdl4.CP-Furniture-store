@@ -583,17 +583,17 @@
                         <div class="coupon_inner">
                             <div class="cart_subtotal">
                                 <p>Subtotal</p>
-                                <p class="cart_amount">$215.00</p>
+                                <p class="cart_amount" id="cartAmount"></p>
                             </div>
                             <div class="cart_subtotal ">
                                 <p>Shipping</p>
-                                <p class="cart_amount"><span>Flat Rate:</span> $255.00</p>
+                                <p class="cart_amount"><span>Flat Rate:</span>$0</p>
                             </div>
                             <a href="#">Calculate shipping</a>
 
                             <div class="cart_subtotal">
                                 <p>Total</p>
-                                <p class="cart_amount">$215.00</p>
+                                <p class="cartAmount" id="cartAmountTotal"></p>
                             </div>
                             <div class="checkout_btn">
                                 <a href="#" class="btn btn-md btn-golden">Proceed to Checkout</a>
@@ -827,6 +827,9 @@
     </div>
 </div> <!-- End Modal Quickview cart -->
 
+
+
+
 </body>
 <script src="/assets/project/js/vendor/vendor.min.js"></script>
 <script src="/assets/project/js/plugins/plugins.min.js"></script>
@@ -835,6 +838,7 @@
 <script src="/assets/bootstrap/v5.3.0/js/bootstrap.bundle.min.js"></script>
 <script src="/assets/sweetalert2/sweetalert2.all.min.js"></script>
 <script src="/assets/js/appbase.js"></script>
+
 
 <!-- Main JS -->
 <script src="/assets/project/js/main.js"></script>
@@ -866,20 +870,27 @@
     let cartDetail = new CartDetail();
     let currentCartDetail = null;
     let product = new Product();
+    let order = new Order();
+
     page.dialogs.commands.getCartDetail = ()=>{
         $.ajax({
             type: "GET",
             url: page.urls.getCartDetail
         })
             .done((data) => {
+
                $.each(data , (i, item) => {
                    currentCartDetail = item;
                    product = currentCartDetail.product;
                    let str = page.commands.renderCartDetail(currentCartDetail, product);
                    $('#renderCartDetail').append(str);
+
                })
                 page.commands.addEventDeleteCartDetail();
                 page.commands.checkoutCartDetail();
+
+                page.commands.showTotalAmount();
+
             })
             .fail((error) => {
                 console.log(error)
@@ -889,7 +900,7 @@
     page.commands.renderCartDetail = (cartDetail,product) =>{
         let imageUrl = AppBase.BASE_URL_CLOUD_IMAGE + '/'  + '/' + product.avatar.fileFolder + '/' + product.avatar.fileName
         return `
-            <tr id="tr_${cartDetail.id}" >
+            <tr class="cartDetail" id="tr_${cartDetail.id}" >
                                     <td class="product_remove deleteCartDetail"  data-id="${cartDetail.id}"><button><i class="fa fa-trash"></i></button>
                                     </td>
                                     <td class="product_thumb"><a href="product-details-default.html"><img
@@ -899,10 +910,38 @@
                                     <td class="product-price">$${cartDetail.price}</td>
                                     <td class="product_quantity"><label>Quantity</label> <input min="${cartDetail.quantity}"
                                                                                                 max="100" value="1" type="number"></td>
-                                    <td class="product_total">$${cartDetail.amount}</td>
+                                    <td class="product_total totalAmount"  data-amount="${cartDetail.amount}">$${cartDetail.amount}</td>
                                 </tr>
         `;
     }
+
+    page.commands.showTotalAmount = () =>{
+            let str=0;
+            $('.totalAmount').each(function () {
+                let total = $(this).data('amount');
+                str += total;
+            });
+        $('#cartAmount').text('$'+str);
+        $('#cartAmountTotal').text('$' + str);
+    }
+
+    // page.commands.showTotalAmount = () =>{
+    //     console.log('here')
+    //     $('.totalAmount').on('change', function (){
+    //         let str=0;
+    //         console.log('here tfhfh')
+    //         $('.cartDetail').each(function (){
+    //             let i = $(".totalAmount",this);
+    //             let total = $(i).data('amount');
+    //             str += total;
+    //             console.log(str);
+    //         })
+    //     });
+        // $('#cartAmount').text(str);
+
+
+
+
 
     page.commands.checkoutCartDetail = () => {
         $("#btnCheckout").on("click", function () {
@@ -934,6 +973,7 @@
         })
     }
 
+
     page.commands.deleteCartDetail = (id) =>{
         console.log('cart id')
         $.ajax({
@@ -948,6 +988,8 @@
             .done(() => {
 
                 $('#tr_' + id).remove();
+
+                page.commands.showTotalAmount();
 
                 Swal.fire({
                     position: 'top-end',
@@ -966,8 +1008,12 @@
             })
     }
 
+
+
+
     $(()=>{
         page.dialogs.commands.getCartDetail();
+
     })
 </script>
 </html>

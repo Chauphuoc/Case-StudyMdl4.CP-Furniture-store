@@ -160,4 +160,11 @@ class CartDetail {
     }
 }
 
+class Order {
+    constructor(id , totalAmount , user) {
+        this.id = id;
+        this.totalAmount = totalAmount;
+        this.user = user;
+    }
+}
 

@@ -1,6 +1,7 @@
 package com.cg.service.order;
 
 import com.cg.model.Order;
+import com.cg.model.User;
 import com.cg.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -44,4 +45,8 @@ public class OrderServiceImpl implements IOrderService{
 
     }
 
+    @Override
+    public Order findOrderByUser(User user) {
+        return orderRepository.findOrderByUser(user);
+    }
 }

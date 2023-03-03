@@ -1,5 +1,6 @@
 package com.cg.model;
 
+import com.cg.model.dto.OrderDTO;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -29,4 +30,13 @@ public class Order extends BaseEntity {
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
     private User user;
+
+    public OrderDTO toOrderDTO() {
+        return new OrderDTO()
+                .setId(id)
+                .setTotalAmount(totalAmount)
+                .setUserDTO(user.toUserDTO());
+    }
+
+
 }

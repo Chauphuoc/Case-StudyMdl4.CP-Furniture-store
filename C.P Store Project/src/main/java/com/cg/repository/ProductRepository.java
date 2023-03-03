@@ -23,6 +23,8 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     )
     List<ProductCreateResDTO> findAllProductCreateResDTO();
 
+
+
     @Override
     Optional<Product> findById(Long id);
 }

@@ -1140,7 +1140,7 @@
             createCustomer: AppBase.API_PRODUCT,
             addToCart: AppBase.API_CART,
             createProduct: AppBase.API_PRODUCT,
-
+            deleteProduct:AppBase.API_PRODUCT
         },
         elements: {},
         loadData: {},
@@ -1892,7 +1892,7 @@
     page.commands.renderProduct = (product , avatar) => {
         let imageUrl = AppBase.BASE_URL_CLOUD_IMAGE + '/'  + '/' + avatar.fileFolder + '/' + avatar.fileName
         return `
-                <div class="product-default-single-item product-color--golden swiper-slide">
+                <div class="product-default-single-item product-color--golden swiper-slide" id="tr_${product.id}">
                                     <div class="image-box">
                                         <a href="product-details-default.html" class="image-link">
                                             <img src="${imageUrl}"
@@ -1906,8 +1906,7 @@
                                             <div class="action-link-right">
                                                 <a href="#" class="classShowModalDetail" data-id="${product.id}" >
                                                    <i class="icon-magnifier"></i></a>
-                                                <a href="wishlist.html"><i class="icon-heart"></i></a>
-                                                <a href="compare.html"><i class="icon-shuffle"></i></a>
+                                                <a href="#" class="deleteProduct" data-id="${product.id}"><i class="fas fa-trash-alt"></i></a>
                                             </div>
                                         </div>
                                     </div>
@@ -1998,10 +1997,46 @@
                 page.commands.handleAddCart();
                 page.commands.removeEventShowModalDetail();
                 page.commands.addEventShowModalDetail();
+                page.commands.addEventDeleteProduct();
             })
             .fail((jqXHR) => {
                 console.log(jqXHR)})
         }
+
+
+    page.commands.addEventDeleteProduct = () =>{
+        $('.deleteProduct').on('click', function (){
+            let idProduct = $(this).data('id');
+            console.log('hello000');
+            AppBase.SweetAlert.showDeleteConfirmDialog().then(result =>{
+                if (result.isConfirmed) {
+                    page.commands.doDeleteProduct(idProduct);
+                }
+            })
+        })
+    }
+
+    page.commands.doDeleteProduct = (id)=>{
+        $.ajax({
+            header: {
+                'accept': 'application/json',
+                'content-type': 'application/json'
+            },
+            type: 'DELETE',
+            url: page.urls.deleteProduct + '/' + id,
+            data: JSON.stringify(id)
+        })
+            .done(()=>{
+                $('#tr_' + id).remove();
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Product has been deleted.',
+                    showConfirmButton: false,
+                    timer: 1000
+                })
+            })
+    }
 
         $(() => {
             page.loadData.getAllProducts();
@@ -2010,6 +2045,7 @@
             page.commands.addEventUpdateCustomer();
             page.loadData.getInfoCustomer();
             page.commands.onLoadCreateImage();
+            page.commands.addEventDeleteProduct();
             page.dialogs.loadData.getAllProvinces().then(() => {
                 let districtId = null;
 

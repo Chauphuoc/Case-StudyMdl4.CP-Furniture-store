@@ -44,5 +44,15 @@ public class ProductAPI {
         return new ResponseEntity<>(productCreateResDTO, HttpStatus.CREATED);
     }
 
+    @DeleteMapping("/{productId}")
+    public ResponseEntity<?> doDeleteProduct(@PathVariable Long productId) {
+        Optional<Product> productOptional = productService.findById(productId);
+        if (!productOptional.isPresent()) {
+            throw new DataInputException("Product is not found");
+        }
+        Product product = productOptional.get();
+        productService.delete(product);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 
 }

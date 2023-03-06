@@ -26,18 +26,10 @@ public class CustomerController {
         return "customer/index";
     }
 
-//    @GetMapping
-//    public String showListPage(Model model) {
-//        List<Customer> customers = customerService.findAllByDeletedIsFalse();
-//        model.addAttribute("customers", customers);
-//        return "customer/list";
-//    }
-
-//    @GetMapping
-//    public String showLoginForm(Model model) {
-//
-//        return "customer/login";
-//    }
+    @GetMapping("/management")
+    public String getAllCustomer(Model model) {
+        return "customer/order";
+    }
 
 
     @PostMapping("/update/{id}")

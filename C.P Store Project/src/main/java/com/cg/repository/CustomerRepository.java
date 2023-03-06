@@ -32,6 +32,7 @@ public interface CustomerRepository extends JpaRepository<Customer, Long> {
     )
     List<CustomerDTO> findAllCustomerDTO();
 
+    Customer findCustomerByUser(User user);
 
     List<Customer> findAllByDeletedIsFalse();
 

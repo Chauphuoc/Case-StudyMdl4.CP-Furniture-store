@@ -120,6 +120,8 @@ public class CartServiceImpl implements ICartService{
             orderDetailRepository.save(orderDetail);
         }
 
+
+
         cartDetailRepository.deleteAllByCart(cart);
         cartRepository.deleteById(cart.getId());
 

@@ -38,9 +38,15 @@ public class CustomerAPI {
 
     @Autowired
     private CustomerRepository customerRepository;
+
     @Autowired
     private ILocationRegionService locationRegionService;
 
+    @GetMapping
+    public ResponseEntity<?> getAllCustomer () {
+        List<CustomerDTO> customerDTOS = customerService.findALlCustomerDTO();
+        return new ResponseEntity<>(customerDTOS, HttpStatus.OK);
+    }
 
     @GetMapping ("/info")
     public ResponseEntity<?> getInfoCustomer() {

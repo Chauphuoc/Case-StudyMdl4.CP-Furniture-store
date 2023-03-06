@@ -3,9 +3,14 @@ package com.cg.api;
 import com.cg.exception.DataInputException;
 import com.cg.model.*;
 import com.cg.model.dto.CartDetailDTO;
+import com.cg.model.dto.CartResponseDTO;
+import com.cg.model.dto.CustomerDTO;
 import com.cg.model.dto.ProductCreateResDTO;
+import com.cg.repository.CartDetailRepository;
+import com.cg.repository.CartRepository;
 import com.cg.service.cart.ICartService;
 import com.cg.service.cartDetail.ICartDetailService;
+import com.cg.service.customer.ICustomerService;
 import com.cg.service.order.IOrderService;
 import com.cg.service.product.IProductService;
 import com.cg.service.user.IUserService;
@@ -15,6 +20,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -36,10 +42,17 @@ public class CartAPI {
     private ICartDetailService cartDetailService;
 
     @Autowired
+    private ICustomerService customerService;
+
+    @Autowired
     private IOrderService orderService;
 
     @Autowired
     private AppUtils appUtils;
+    @Autowired
+    private CartRepository cartRepository;
+    @Autowired
+    private CartDetailRepository cartDetailRepository;
 
     @GetMapping
     public ResponseEntity<?> getCartDetail () {
@@ -71,7 +84,8 @@ public class CartAPI {
     }
 
 
-    @PostMapping("/{productId}")
+
+    @PostMapping("/add/{productId}")
     public ResponseEntity<?> addCart(@PathVariable Long productId) {
 
         String username = appUtils.getUsernamePrincipal();
@@ -109,19 +123,40 @@ public class CartAPI {
 
         User user = userOptional.get();
 
+        Customer customer = customerService.findCustomerByUser(user);
+        CustomerDTO customerDTO = customer.toCustomerDTO();
+
         Optional<Cart> cartOptional = cartService.findByUser(user);
 
-        Order order = new Order();
 
+        List<CartResponseDTO> cartResponseDTOList = new ArrayList<>();
         if (!cartOptional.isPresent()) {
             throw new DataInputException("Please buy something before checkout");
         }
         else {
             Cart cart = cartOptional.get();
+
+            List<CartDetailDTO> cartDetailDTOS = cartDetailRepository.findAllCartDetailDTO(cart);
+
+
+            for (CartDetailDTO cartDetailDTO : cartDetailDTOS) {
+                CartResponseDTO cartResponseDTO = new CartResponseDTO();
+                cartResponseDTO.setId(customerDTO.getId());
+                cartResponseDTO.setFullName(customerDTO.getFullName());
+                cartResponseDTO.setPhone(customerDTO.getPhone());
+                cartResponseDTO.setLocationRegionDTO(customerDTO.getLocationRegion());
+                cartResponseDTO.setTitle(cartDetailDTO.getTitle());
+                cartResponseDTO.setPrice(cartDetailDTO.getPrice());
+                cartResponseDTO.setQuantity(cartDetailDTO.getQuantity());
+                cartResponseDTO.setAmount(cartDetailDTO.getAmount());
+                cartResponseDTOList.add(cartResponseDTO);
+            }
+
+
             cartService.checkout(user, cart);
-            order = orderService.findOrderByUser(user);
+
         }
 
-        return new ResponseEntity<>(order.toOrderDTO() ,HttpStatus.OK);
+        return new ResponseEntity<>(cartResponseDTOList ,HttpStatus.OK);
     }
 }

@@ -1,5 +1,6 @@
 package com.cg.model;
 
+import com.cg.model.dto.OrderDetailDTO;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -38,4 +39,15 @@ public class OrderDetail {
     @ManyToOne
     @JoinColumn(name = "order_id", referencedColumnName = "id", nullable = false)
     private Order order;
+
+    public OrderDetailDTO toOrderDetailDTO() {
+        return new OrderDetailDTO()
+                .setId(id)
+                .setProductCreateResDTO(product.toProductCreateResDTO())
+                .setTitle(title)
+                .setPrice(price)
+                .setQuantity(quantity)
+                .setAmount(amount)
+                .setOrderDTO(order.toOrderDTO());
+    }
 }

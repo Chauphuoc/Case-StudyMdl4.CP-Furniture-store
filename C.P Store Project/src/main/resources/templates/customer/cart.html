@@ -46,23 +46,11 @@
                                                 class="fa fa-angle-down"></i></a>
                                     </li>
                                     <li class="has-dropdown">
-                                        <a href="blog-single-sidebar-left.html">Blog <i
+                                        <a href="#" id="create-new-product">Create Product<i
                                                 class="fa fa-angle-down"></i></a>
                                     </li>
                                     <li class="has-dropdown">
-                                        <a href="#">Pages <i class="fa fa-angle-down"></i></a>
-                                        <!-- Sub Menu -->
-                                        <ul class="sub-menu">
-                                            <li><a href="faq.html">Frequently Questions</a></li>
-                                            <li><a href="privacy-policy.html">Privacy Policy</a></li>
-                                            <li><a href="404.html">404 Page</a></li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <a href="about-us.html">About Us</a>
-                                    </li>
-                                    <li>
-                                        <a href="contact-us.html">Contact Us</a>
+                                        <a href="/customers/management">Customer Management</a>
                                     </li>
                                 </ul>
                             </nav>
@@ -82,7 +70,7 @@
                                 </button>
                             </li>
                             <li>
-                                <a href="#offcanvas-add-cart" class="offcanvas-toggle">
+                                <a href="/cart" >
                                     <i class="icon-bag"></i>
                                     <span class="item-count">3</span>
                                 </a>
@@ -855,7 +843,10 @@
             addToCart: AppBase.API_CART,
             getCartDetail: AppBase.API_CART,
             deleteCartDetail: AppBase.API_CART,
-            doCheckout : AppBase.API_CART + "/checkout"
+            doCheckout : AppBase.API_CART + "/checkout",
+            redirectUrl:  "/responseCart",
+            addProductToCart: AppBase.API_CART + "/add",
+            minusProductToCart: AppBase.API_CART + "/minus"
         },
         elements: {},
         loadData: {},
@@ -886,10 +877,12 @@
                    $('#renderCartDetail').append(str);
 
                })
+                page.commands.addToCartBtnEvent();
                 page.commands.addEventDeleteCartDetail();
                 page.commands.checkoutCartDetail();
 
                 page.commands.showTotalAmount();
+
 
             })
             .fail((error) => {
@@ -908,8 +901,13 @@
                                             alt=""></a></td>
                                     <td class="product_name"><a href="product-details-default.html">${product.title}</a></td>
                                     <td class="product-price">$${cartDetail.price}</td>
-                                    <td class="product_quantity"><label>Quantity</label> <input min="${cartDetail.quantity}"
-                                                                                                max="100" value="1" type="number"></td>
+                                    <td class="product_quantity">
+                                    <label>Quantity</label>
+                                     <input class="input-value" min="1" max="100" value="1" type="number">
+<!--                                     Không nên dùng id cho button khi sử dụng render-->
+                                     <button class="addToCartBtn" data-id="${product.id}"><i class="fas fa-plus"></i></button>
+                                     <button><i class="fas fa-minus"></i></button>
+                                     </td>
                                     <td class="product_total totalAmount"  data-amount="${cartDetail.amount}">$${cartDetail.amount}</td>
                                 </tr>
         `;
@@ -925,27 +923,10 @@
         $('#cartAmountTotal').text('$' + str);
     }
 
-    // page.commands.showTotalAmount = () =>{
-    //     console.log('here')
-    //     $('.totalAmount').on('change', function (){
-    //         let str=0;
-    //         console.log('here tfhfh')
-    //         $('.cartDetail').each(function (){
-    //             let i = $(".totalAmount",this);
-    //             let total = $(i).data('amount');
-    //             str += total;
-    //             console.log(str);
-    //         })
-    //     });
-        // $('#cartAmount').text(str);
-
-
-
 
 
     page.commands.checkoutCartDetail = () => {
         $("#btnCheckout").on("click", function () {
-            console.log("check out");
             $.ajax({
                 headers: {
                     'accept': 'application/json',
@@ -955,7 +936,7 @@
                 url: page.urls.doCheckout
             })
                 .done((data)=>{
-                    console.log(data);
+
                 })
         })
     }
@@ -964,7 +945,7 @@
     page.commands.addEventDeleteCartDetail = ()=>{
         $('.deleteCartDetail').on('click', function() {
             let id = $(this).data('id');
-            console.log(id);
+            console.log("event btn" + id);
             AppBase.SweetAlert.showDeleteConfirmDialog().then(result => {
                 if (result.isConfirmed) {
                     page.commands.deleteCartDetail(id)
@@ -1010,10 +991,32 @@
 
 
 
+    page.commands.addToCartBtnEvent = ()=>{
+        $('.addToCartBtn').on('click', function (){
+            let productId = $(this).data('id');
+            let inputValueElem = $(this).parent().find(".input-value");
+            let inputValue = +$(this).parent().find(".input-value").val();
+            let count = inputValue + 1;
+            inputValueElem.val(count)
+            page.elements.addProductToCart(productId);
+        })
+    }
+
+    page.elements.addProductToCart = (id)=>{
+        $.ajax({
+            type: "POST",
+            url: page.urls.addProductToCart +"/"+ id,
+        }).done((data) => {
+            console.log(data);
+        }).fail((jqXHR) => {
+            AppBase.SweetAlert.showErrorAlert("Please log in to buy a product!")
+        })
+    }
+
 
     $(()=>{
         page.dialogs.commands.getCartDetail();
-
+        page.commands.addToCartBtnEvent();
     })
 </script>
 </html>

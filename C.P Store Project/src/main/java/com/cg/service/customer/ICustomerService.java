@@ -21,4 +21,6 @@ public interface ICustomerService extends IGeneralService<Customer> {
 
     List<Customer> findAllByIdNotAndDeletedIsFalse(Long id);
 
+    Customer findCustomerByUser(User user);
+
 }
